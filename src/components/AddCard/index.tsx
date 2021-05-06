@@ -10,6 +10,7 @@ import { useDisclosure } from '@chakra-ui/hooks'
 
 
 import { useForm } from 'react-hook-form'
+import InpuHookForm from '../InpuHookForm'
 
 export default function AddCard(): ReactElement {
   const { handleSubmit, errors, register, formState } = useForm()
@@ -34,50 +35,19 @@ export default function AddCard(): ReactElement {
           <DrawerHeader borderBottomWidth="1px">
             Create a new account
         </DrawerHeader>
-
           <DrawerBody>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing="24px">
-                <Box>
-                  <InpuHookForm />
-                  
-                </Box>
-
-                <Box>
-                  <FormLabel htmlFor="username">Card Number</FormLabel>
-                  <Input
-                    isInvalid
-                    errorBorderColor="red.400"
-                    id="username"
-                    variant="flushed"
-                    placeholder="Please enter user name"
-                  />
-                </Box>
-
-                <Box>
-                  <FormLabel htmlFor="username">Expiry date</FormLabel>
-                  <Input
-                    id="username"
-                    variant="flushed"
-                    placeholder="Please enter user name"
-                  />
-                </Box>
-
-                <Box>
-                  <FormLabel htmlFor="username">CVC {`(Security code)`}</FormLabel>
-                  <Input
-                    id="username"
-                    variant="flushed"
-                    placeholder="Please enter user name"
-                  />
-                </Box>
+                <InpuHookForm {...{ register, labelText: 'Name in card', name: 'nameInCard'}} />
+                <InpuHookForm {...{ register, labelText: 'Card Number', name: 'cardNumber'}} />
+                <InpuHookForm {...{ register, labelText: 'Expiry date', name: 'expiryDate'}} />
+                <InpuHookForm {...{ register, labelText: 'CVC (Security code)', name: 'cvc'}} />
               </Stack>
               <DrawerFooter borderTopWidth="1px">
                 <Button isFullWidth type="submit">Confirm</Button>
               </DrawerFooter>
             </form>
           </DrawerBody>
-
         </DrawerContent>
       </Drawer>
     </>
