@@ -10,10 +10,11 @@ import { Icon } from '@chakra-ui/icons'
 interface InpuHookFormInt {
   register: any,
   name: string,
-  labelText: string
+  labelText: string,
+  maxLength?: number
 }
 
-export default function InpuHookForm({register, name, labelText}: InpuHookFormInt): ReactElement {
+export default function InpuHookForm({register, name, labelText, maxLength = 50}: InpuHookFormInt): ReactElement {
   return(
     <FormControl isInvalid={false}>
       <FormLabel htmlFor={name}>{labelText}</FormLabel>
@@ -24,6 +25,7 @@ export default function InpuHookForm({register, name, labelText}: InpuHookFormIn
           variant="flushed"
           placeholder="Please enter user name"
           name={name}
+          maxLength={maxLength}
           />
         <InputRightElement width="4.5rem">
           { true ? <Icon as={FcCheckmark} color="green"/> : <Icon as={CgClose} color="red"/>}
