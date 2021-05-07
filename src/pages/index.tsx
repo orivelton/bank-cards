@@ -1,10 +1,16 @@
-import CardList from '../components/CardList'
+import { useState } from 'react'
+import CardSection from '../components/CardSection'
 import { Container } from '../components/Container'
+import CardContext from '../hooks/context/CardContext'
 
-const Index = () => (
-  <Container height="100vh">
-    <CardList />
-  </Container>
-)
+export default function Index() {
+  const [cards, setCards] = useState([])
 
-export default Index
+  return(
+    <Container height="100vh">
+      <CardContext.Provider value={[cards, setCards]}>
+        <CardSection />
+      </CardContext.Provider>
+    </Container>
+  )
+}
